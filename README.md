@@ -73,16 +73,34 @@ saas-docker-platform/
 
 
 
-🚀 Installation & Usage
+## 🚀 Installation & Usage
 
-1️⃣ Requirements
+### 1️⃣ Requirements
 
-    Linux OS (Ubuntu, Debian, Rocky Linux, etc.)
+- Linux OS (Ubuntu, Debian, Rocky Linux, etc.)
+- Docker installed and running
+- Python 3.9 or higher
 
-    Docker installed and running
+⚠️ **Docker on Windows is NOT supported**
 
-    Python 3.9+
+---
 
-    Note: Docker on Windows (WSL2/Desktop) is not officially supported.
+### 2️⃣ Clone Repository
+
+```bash
+git clone https://github.com/Ferjani-r/saas-docker-platform.git
+cd saas-docker-platform
 
 
+### 3️⃣ Create Virtual Environment
+
+python3 -m venv venv
+source venv/bin/activate
+
+### 4️⃣ Install Dependencies
+
+pip install -r requirements.txt
+
+### 5️⃣ Run Application (Development Mode)
+
+python app.py
