@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docker SaaS Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: radial-gradient(circle at top left, #1e3a8a, #020617);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Decorative background shapes */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+        }
+
+        .bg-circle.blue {
+            width: 420px;
+            height: 420px;
+            background: #2563eb;
+            top: -120px;
+            left: -120px;
+        }
+
+        .bg-circle.green {
+            width: 360px;
+            height: 360px;
+            background: #22c55e;
+            bottom: -100px;
+            right: -100px;
+        }
+
+        /* Main card */
+        .card {
+            position: relative;
+            max-width: 520px;
+            padding: 48px 56px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(14px);
+            border-radius: 18px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .tech {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.15);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer {
+            margin-top: 32px;
+            font-size: 13px;
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Decorative background -->
+<div class="bg-circle blue"></div>
+<div class="bg-circle green"></div>
+
+<!-- Main content -->
+<div class="card">
+    <div class="logo">🐳</div>
+
+    <h1>Docker SaaS Platform</h1>
+
+    <p>
+        This Nginx container is running a custom landing page<br>
+        deployed and managed through a Python-based SaaS platform.
+    </p>
+
+    <div class="tech">
+        <div class="pill">🐳 Docker</div>
+        <div class="pill">🌐 Nginx</div>
+        <div class="pill">🐍 Flask</div>
+        <div class="pill">🐧 Linux</div>
+    </div>
+
+    <div class="footer">
+        Managed automatically · Default page replaced · Production-ready
+    </div>
+</div>
+
+</body>
+</html>

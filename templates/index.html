@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docker Container Manager</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h2 class="mb-4 text-center">🐳 Docker Container Manager</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Create container -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="POST" action="/create" class="row g-2">
+                <div class="col-md-9">
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           placeholder="Container name (e.g. nginx-app)"
+                           required>
+                </div>
+                <div class="col-md-3 d-grid">
+                    <button class="btn btn-primary">
+                        Create Container
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Containers table -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+			<th>Uptime</th>
+                        <th>Port</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                {% for c in containers %}
+                    <tr>
+                        <td>{{ c.name }}</td>
+
+                        <td>
+                            {% if c.status == "running" %}
+                                <span class="badge bg-success">Running</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Stopped</span>
+                            {% endif %}
+                        </td>
+
+			<td>{{ c.uptime }}</td>
+
+                        <td>{{ c.port }}</td>
+
+                        <td class="text-center">
+
+                            {% if c.status == "running" and c.port != "N/A" %}
+                                <a href="http://{{ request.host.split(':')[0] }}:{{ c.port }}"
+                                   target="_blank"
+                                   class="btn btn-sm btn-primary">
+                                    Open
+                                </a>
+                            {% endif %}
+
+                            {% if c.status == "running" %}
+                                <a href="/restart/{{ c.id }}"
+                                   class="btn btn-sm btn-secondary"
+                                   onclick="return confirm('Restart this container?');">
+                                    Restart
+                                </a>
+                            {% endif %}
+
+                            {% if c.status != "running" %}
+                                <a href="/start/{{ c.id }}" class="btn btn-sm btn-success">
+                                    Start
+                                </a>
+                            {% endif %}
+
+                            {% if c.status == "running" %}
+                                <a href="/stop/{{ c.id }}" class="btn btn-sm btn-warning">
+                                    Stop
+                                </a>
+                            {% endif %}
+                                                         
+                            <button class="btn btn-sm btn-info"
+                                    onclick="showLogs('{{ c.id }}')">
+                                Logs
+                            </button>
+                           
+                            <a href="/delete/{{ c.id }}"
+                               class="btn btn-sm btn-danger"
+                               onclick="return confirm('Are you sure you want to delete this container?');">
+                                Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<!-- Logs Modal -->
+<div class="modal fade" id="logsModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Container Logs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <pre id="logsContent" style="font-size: 13px;"></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+function showLogs(containerId) {
+    fetch(`/logs/${containerId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("logsContent").textContent =
+                data.logs || data.error;
+            new bootstrap.Modal(document.getElementById("logsModal")).show();
+        });
+}
+</script>
+
+</body>
+</html>
