@@ -1,57 +1,86 @@
 # 🐳 Docker Container Manager — Python SaaS Platform
 
 ## 📌 Overview
-**Docker Container Manager** is a Python-based SaaS web application that provides a clean and professional web interface for managing Docker containers. 
+
+**Docker Container Manager** is a Python-based SaaS web application that provides a clean and professional web interface for managing Docker containers.
 
 The platform allows users to create and manage **Nginx containers running a custom landing page**, while offering real-time operational visibility such as **status, uptime, logs, and direct service access**.
 
-This project demonstrates strong knowledge of **backend development, Docker API integration, and DevOps best practices**.
+This project demonstrates strong knowledge of **backend development**, **Docker API integration**, and **DevOps best practices**.
 
 ---
 
 ## 🎯 Project Objectives
-* Build a **SaaS-style web interface** for Docker container management.
-* Interact with Docker using the **Docker Engine API** (not shell commands).
-* Replace the default Nginx page with a **custom professional landing page**.
-* Provide **container lifecycle management and observability**.
-* Follow **clean, modular, production-aware architecture**.
-* Run on **Linux-based systems only**.
+
+- Build a **SaaS-style web interface** for Docker container management
+- Interact with Docker using the **Docker Engine API** (not shell commands)
+- Replace the default Nginx page with a **custom professional landing page**
+- Provide **container lifecycle management and observability**
+- Follow **clean, modular, production-aware architecture**
+- Run on **Linux-based systems only**
 
 ---
 
 ## 🧱 Architecture Overview
-* **User Browser** → **Flask Web Application** (SaaS UI)
-* **Flask Web Application** → **Docker Engine API** (Python SDK)
-* **Docker Engine API** → **Nginx Containers** (Custom HTML Page)
 
-### Architectural Principles
-* **Separation of Concerns:** Distinct layers for routes, services, and utilities.
-* **API-Driven:** Docker logic is isolated in a dedicated service layer.
-* **Security:** No direct shell execution; uses read-only volume mounts.
+```text
+User Browser
+     │
+     ▼
+Flask Web Application (SaaS UI)
+     │
+     ▼
+Docker Engine API
+     │
+     ▼
+Nginx Containers (Custom HTML Page)
 
----
+Architectural Principles
 
-## ✨ Features
+    Separation of Concerns: Routes, services, and utilities are clearly separated
 
-### 🔧 Container Lifecycle Management
-* **Create:** Provision new Nginx containers instantly.
-* **Control:** Start, Stop, and Restart containers from the UI.
-* **Cleanup:** Delete containers and free up system resources.
+    API-Driven Design: Docker logic isolated in a service layer
 
-### 📊 Observability & Monitoring
-* **Live Status:** Real-time visibility (Running / Stopped).
-* **Dynamic Mapping:** View assigned host ports for each container.
-* **Uptime Tracking:** Precise uptime calculated from Docker metadata.
-* **Logs Viewer:** Access container output for troubleshooting.
+    Security-Oriented: No shell execution and read-only volume mounts
 
-### 🌐 User Experience
-* **Clean UI:** Responsive Bootstrap-based dashboard.
-* **Direct Access:** "Open" button to jump straight to the container's web service.
-* **Feedback:** Flash messages for success/error notifications.
+✨ Features
+🔧 Container Lifecycle Management
 
----
+    Create Nginx containers
 
-## 🗂️ Project Structure
+    Start containers
+
+    Stop containers
+
+    Restart containers
+
+    Delete containers
+
+📊 Observability & Monitoring
+
+    Container status (Running / Stopped)
+
+    Dynamic port mapping
+
+    Container uptime calculated from Docker metadata
+
+    Container logs viewer
+
+    Automatic dashboard refresh
+
+🌐 User Experience
+
+    Clean Bootstrap-based dashboard
+
+    Flash messages for success and error feedback
+
+    Confirmation dialogs for destructive actions
+
+    Open button to directly access Nginx containers
+
+    Custom professional Nginx landing page
+
+🗂️ Project Structure
 
 saas-docker-platform/
 ├── app/
@@ -69,37 +98,109 @@ saas-docker-platform/
 │   └── index.html
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 
+🧠 Technical Highlights
+🐳 Docker Integration
 
+    Uses Docker SDK for Python
 
-## 🚀 Installation & Usage
+    Communicates directly with Docker Engine API
 
-### 1️⃣ Requirements
+    Dynamic port allocation
 
-- Linux OS (Ubuntu, Debian, Rocky Linux, etc.)
-- Docker installed and running
-- Python 3.9 or higher
+    Safe container lifecycle handling
 
-⚠️ **Docker on Windows is NOT supported**
+⏱️ Uptime Calculation
 
+    Derived from Docker StartedAt metadata
 
+    Handles nanosecond timestamps safely
 
-### 2️⃣ Clone Repository
+    Accurate across restarts
 
-- git clone https://github.com/Ferjani-r/saas-docker-platform.git
-- cd saas-docker-platform
+    Updated automatically via page refresh
 
+🧩 Clean Backend Architecture
 
-### 3️⃣ Create Virtual Environment
+    Flask application factory pattern
 
-- python3 -m venv venv
-- source venv/bin/activate
+    Blueprint-based routing
 
-### 4️⃣ Install Dependencies
+    Dedicated service layer for Docker operations
 
-- pip install -r requirements.txt
+    Utility helpers for validation and time handling
 
-### 5️⃣ Run Application (Development Mode)
+🔐 Security Considerations
 
-- python app.py
+    Docker socket access limited to host
+
+    No user input passed to shell
+
+    No command execution inside containers
+
+    Read-only HTML volume mounts
+
+    Default Nginx page disabled
+
+⚠️ Note: Authentication is not implemented (single-admin demo context).
+🚀 Installation & Usage
+1️⃣ Requirements
+
+    Linux OS (Ubuntu, Debian, Rocky Linux, etc.)
+
+    Docker installed and running
+
+    Python 3.9+
+
+⚠️ Docker on Windows is NOT supported
+2️⃣ Clone Repository
+
+git clone https://github.com/Ferjani-r/saas-docker-platform.git
+cd saas-docker-platform
+
+3️⃣ Create Virtual Environment
+
+python3 -m venv venv
+source venv/bin/activate
+
+4️⃣ Install Dependencies
+
+pip install -r requirements.txt
+
+5️⃣ Run Application (Development Mode)
+
+python app.py
+
+Access the application at:
+
+http://<VM-IP>:5000
+
+🧪 Example Workflow
+
+    Create a container from the dashboard
+
+    Container starts automatically
+
+    Click Open to access the Nginx page
+
+    View logs and uptime in real time
+
+    Restart or stop the container
+
+    Uptime updates accordingly
+
+🏁 Conclusion
+
+This project demonstrates:
+
+    Backend engineering fundamentals
+
+    Docker and DevOps operational thinking
+
+    Clean and maintainable architecture
+
+    Secure container management
+
+    Professional documentation and UI design
