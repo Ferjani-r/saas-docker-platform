@@ -83,11 +83,10 @@ saas-docker-platform/
 
 ⚠️ **Docker on Windows is NOT supported**
 
----
+
 
 ### 2️⃣ Clone Repository
 
-```bash
 git clone https://github.com/Ferjani-r/saas-docker-platform.git
 cd saas-docker-platform
 
