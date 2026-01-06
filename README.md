@@ -87,19 +87,19 @@ saas-docker-platform/
 
 ### 2️⃣ Clone Repository
 
-git clone https://github.com/Ferjani-r/saas-docker-platform.git
-cd saas-docker-platform
+- git clone https://github.com/Ferjani-r/saas-docker-platform.git
+- cd saas-docker-platform
 
 
 ### 3️⃣ Create Virtual Environment
 
-python3 -m venv venv
-source venv/bin/activate
+- python3 -m venv venv
+- source venv/bin/activate
 
 ### 4️⃣ Install Dependencies
 
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
 ### 5️⃣ Run Application (Development Mode)
 
-python app.py
+- python app.py
