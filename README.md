@@ -52,7 +52,7 @@ This project demonstrates strong knowledge of **backend development, Docker API 
 ---
 
 ## 🗂️ Project Structure
-```text
+
 saas-docker-platform/
 ├── app/
 │   ├── __init__.py
