@@ -34,9 +34,9 @@ Docker Engine API
      │
      ▼
 Nginx Containers (Custom HTML Page)
-```
+...
 
-Architectural Principles
+## Architectural Principles
 
     Separation of Concerns: Routes, services, and utilities are clearly separated
 
@@ -44,8 +44,8 @@ Architectural Principles
 
     Security-Oriented: No shell execution and read-only volume mounts
 
-✨ Features
-🔧 Container Lifecycle Management
+## ✨ Features
+## 🔧 Container Lifecycle Management
 
     Create Nginx containers
 
@@ -57,7 +57,7 @@ Architectural Principles
 
     Delete containers
 
-📊 Observability & Monitoring
+## 📊 Observability & Monitoring
 
     Container status (Running / Stopped)
 
@@ -69,7 +69,7 @@ Architectural Principles
 
     Automatic dashboard refresh
 
-🌐 User Experience
+## 🌐 User Experience
 
     Clean Bootstrap-based dashboard
 
@@ -81,8 +81,8 @@ Architectural Principles
 
     Custom professional Nginx landing page
 
-🗂️ Project Structure
-
+## 🗂️ Project Structure
+```text
 saas-docker-platform/
 ├── app/
 │   ├── __init__.py
@@ -101,9 +101,10 @@ saas-docker-platform/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+...
 
-🧠 Technical Highlights
-🐳 Docker Integration
+## 🧠 Technical Highlights
+## 🐳 Docker Integration
 
     Uses Docker SDK for Python
 
@@ -113,7 +114,7 @@ saas-docker-platform/
 
     Safe container lifecycle handling
 
-⏱️ Uptime Calculation
+## ⏱️ Uptime Calculation
 
     Derived from Docker StartedAt metadata
 
@@ -123,7 +124,7 @@ saas-docker-platform/
 
     Updated automatically via page refresh
 
-🧩 Clean Backend Architecture
+## 🧩 Clean Backend Architecture
 
     Flask application factory pattern
 
@@ -133,7 +134,7 @@ saas-docker-platform/
 
     Utility helpers for validation and time handling
 
-🔐 Security Considerations
+## 🔐 Security Considerations
 
     Docker socket access limited to host
 
@@ -145,9 +146,9 @@ saas-docker-platform/
 
     Default Nginx page disabled
 
-⚠️ Note: Authentication is not implemented (single-admin demo context).
-🚀 Installation & Usage
-1️⃣ Requirements
+## ⚠️ Note: Authentication is not implemented (single-admin demo context).
+## 🚀 Installation & Usage
+## 1️⃣ Requirements
 
     Linux OS (Ubuntu, Debian, Rocky Linux, etc.)
 
@@ -155,30 +156,29 @@ saas-docker-platform/
 
     Python 3.9+
 
-⚠️ Docker on Windows is NOT supported
-2️⃣ Clone Repository
+## ⚠️ Docker on Windows is NOT supported
+## 2️⃣ Clone Repository
 
-git clone https://github.com/Ferjani-r/saas-docker-platform.git
-cd saas-docker-platform
+- git clone https://github.com/Ferjani-r/saas-docker-platform.git
+- cd saas-docker-platform
 
-3️⃣ Create Virtual Environment
+## 3️⃣ Create Virtual Environment
 
-python3 -m venv venv
-source venv/bin/activate
+- python3 -m venv venv
+- source venv/bin/activate
 
-4️⃣ Install Dependencies
+## 4️⃣ Install Dependencies
 
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
-5️⃣ Run Application (Development Mode)
+## 5️⃣ Run Application (Development Mode)
 
-python app.py
+- python app.py
 
 Access the application at:
+- http://<VM-IP>:5000
 
-http://<VM-IP>:5000
-
-🧪 Example Workflow
+## 🧪 Example Workflow
 
     Create a container from the dashboard
 
@@ -192,7 +192,7 @@ http://<VM-IP>:5000
 
     Uptime updates accordingly
 
-🏁 Conclusion
+## 🏁 Conclusion
 
 This project demonstrates:
 
