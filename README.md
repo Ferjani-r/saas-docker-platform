@@ -1,171 +1,88 @@
 # 🐳 Docker Container Manager — Python SaaS Platform
 
-## 📖 Description
+## 📌 Overview
+**Docker Container Manager** is a Python-based SaaS web application that provides a clean and professional web interface for managing Docker containers. 
 
-**Docker Container Manager** is a Python-based SaaS web application that provides a clean and professional web interface for managing Docker containers.
+The platform allows users to create and manage **Nginx containers running a custom landing page**, while offering real-time operational visibility such as **status, uptime, logs, and direct service access**.
 
-The platform allows users to **create, start, stop, restart, delete containers**, inspect **container logs**, monitor **uptime**, and **open running Nginx services directly** from the dashboard.
-
-Each container runs **Nginx with a fully customized landing page**, replacing the default Nginx configuration.
-
-This project demonstrates **backend engineering**, **Docker Engine API integration**, and **DevOps operational awareness**.
+This project demonstrates strong knowledge of **backend development, Docker API integration, and DevOps best practices**.
 
 ---
 
 ## 🎯 Project Objectives
-
-- Provide a **SaaS-style web interface** for Docker container management
-- Use the **Docker Engine API** safely via Python
-- Replace default Nginx pages with **custom professional content**
-- Offer **operational visibility** (status, logs, uptime)
-- Follow **clean and modular backend architecture**
-- Run on **Linux-based systems only**
+* Build a **SaaS-style web interface** for Docker container management.
+* Interact with Docker using the **Docker Engine API** (not shell commands).
+* Replace the default Nginx page with a **custom professional landing page**.
+* Provide **container lifecycle management and observability**.
+* Follow **clean, modular, production-aware architecture**.
+* Run on **Linux-based systems only**.
 
 ---
 
 ## 🧱 Architecture Overview
+* **User Browser** → **Flask Web Application** (SaaS UI)
+* **Flask Web Application** → **Docker Engine API** (Python SDK)
+* **Docker Engine API** → **Nginx Containers** (Custom HTML Page)
 
-
-Browser
-│
-▼
-Flask Web Interface (SaaS UI)
-│
-▼
-Docker Engine API
-│
-▼
-Nginx Containers (Custom Landing Page)
-
-
-
-### Design Principles
-- Clear separation between **routes**, **services**, and **utilities**
-- Docker logic isolated in a dedicated service layer
-- No shell execution inside containers
-- Read-only volume mounts for Nginx HTML
+### Architectural Principles
+* **Separation of Concerns:** Distinct layers for routes, services, and utilities.
+* **API-Driven:** Docker logic is isolated in a dedicated service layer.
+* **Security:** No direct shell execution; uses read-only volume mounts.
 
 ---
 
 ## ✨ Features
 
 ### 🔧 Container Lifecycle Management
-- Create Nginx containers
-- Start containers
-- Stop containers
-- Restart containers (atomic operation)
-- Delete containers
+* **Create:** Provision new Nginx containers instantly.
+* **Control:** Start, Stop, and Restart containers from the UI.
+* **Cleanup:** Delete containers and free up system resources.
 
 ### 📊 Observability & Monitoring
-- Container status (Running / Stopped)
-- Dynamic port mapping
-- Container uptime (calculated from Docker metadata)
-- Container logs viewer
-- Automatic dashboard refresh
+* **Live Status:** Real-time visibility (Running / Stopped).
+* **Dynamic Mapping:** View assigned host ports for each container.
+* **Uptime Tracking:** Precise uptime calculated from Docker metadata.
+* **Logs Viewer:** Access container output for troubleshooting.
 
 ### 🌐 User Experience
-- Clean Bootstrap-based interface
-- Flash messages for user feedback
-- Direct **Open** button to access Nginx containers
-- Confirmation dialogs for destructive actions
-- Professional custom Nginx landing page
+* **Clean UI:** Responsive Bootstrap-based dashboard.
+* **Direct Access:** "Open" button to jump straight to the container's web service.
+* **Feedback:** Flash messages for success/error notifications.
 
 ---
 
 ## 🗂️ Project Structure
-
-
-
-
+```text
 saas-docker-platform/
 ├── app/
-│ ├── init.py # Flask app factory
-│ ├── routes.py # Application routes
-│ ├── services/
-│ │ └── docker_service.py
-│ └── utils/
-│ └── validators.py # Validation & uptime helpers
-│
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── services/
+│   │   └── docker_service.py
+│   └── utils/
+│       └── validators.py
 ├── templates/
-│ └── index.html # Web UI
+│   └── index.html
 ├── static/
-│ └── style.css
+│   └── style.css
 ├── nginx/
-│ └── index.html # Custom Nginx landing page
-│
-├── app.py # Application entry point
+│   └── index.html
+├── app.py
 ├── requirements.txt
 └── README.md
 
 
 
----
+🚀 Installation & Usage
 
-## 🧠 Technical Highlights
+1️⃣ Requirements
 
-### 🐳 Docker Integration
-- Uses **Docker SDK for Python**
-- Communicates directly with Docker Engine API
-- Dynamic port assignment
-- No default Nginx configuration exposed
+    Linux OS (Ubuntu, Debian, Rocky Linux, etc.)
 
-### ⏱️ Uptime Calculation
-- Based on Docker `StartedAt` metadata
-- Handles nanosecond timestamps safely
-- Accurate across restarts
-- Automatically updated via dashboard refresh
+    Docker installed and running
 
-### 🧩 Clean Architecture
-- Flask application factory pattern
-- Blueprint-based routing
-- Service layer for Docker operations
-- Utility helpers for validation and time handling
+    Python 3.9+
 
----
-
-## 🔐 Security Considerations
-
-- Docker socket access restricted to the host
-- No command execution inside containers
-- No user input passed to shell
-- Read-only volume mounts for Nginx HTML
-- Default Nginx page disabled
-
-⚠️ **Note**: Authentication is not implemented (single-admin demo context).
-
----
-
-## 🚀 Installation & Usage
-
-### 1️⃣ Requirements
-
-- Linux OS (Ubuntu, Debian, Rocky Linux, etc.)
-- Docker installed and running
-- Python 3.9 or higher
-
-⚠️ **Docker on Windows is NOT supported**
-
----
-
-### 2️⃣ Clone Repository
-
-```bash
-git clone https://github.com/yourusername/saas-docker-platform.git
-cd saas-docker-platform
+    Note: Docker on Windows (WSL2/Desktop) is not officially supported.
 
 
-
-### 3️⃣  Create Virtual Environment
-
-python3 -m venv venv
-source venv/bin/activate
-
-## 4️⃣  Install Dependencies
-
-pip install -r requirements.txt
-
-
-
-## 5️⃣  Run Application (Development Mode)
-
-python app.py
