@@ -34,6 +34,7 @@ Docker Engine API
      │
      ▼
 Nginx Containers (Custom HTML Page)
+```
 
 Architectural Principles
 
